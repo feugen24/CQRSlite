@@ -13,20 +13,20 @@ namespace CQRSCode.ReadModel.Handlers
     {
         public Task Handle(InventoryItemCreated message, CancellationToken token)
         {
-            InMemoryDatabase.List.Add(new InventoryItemListDto(message.Id, message.Name));
+            InMemoryDatabase.List.Add(new InventoryItemListDto(message.AggregateId, message.Name));
             return Task.CompletedTask;
         }
 
         public Task Handle(InventoryItemRenamed message, CancellationToken token)
         {
-            var item = InMemoryDatabase.List.Find(x => x.Id == message.Id);
+            var item = InMemoryDatabase.List.Find(x => x.Id == message.AggregateId);
             item.Name = message.NewName;
             return Task.CompletedTask;
         }
 
         public Task Handle(InventoryItemDeactivated message, CancellationToken token)
         {
-            InMemoryDatabase.List.RemoveAll(x => x.Id == message.Id);
+            InMemoryDatabase.List.RemoveAll(x => x.Id == message.AggregateId);
             return Task.CompletedTask;
         }
     }

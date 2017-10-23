@@ -27,7 +27,7 @@ namespace CQRSlite.Tests.Substitutes
                 throw new Exception();
             }
             var obj = (T) Activator.CreateInstance(typeof (T), true);
-            obj.LoadFromHistory(new[] {new TestAggregateDidSomething {Id = aggregateId, Version = 1}});
+            obj.LoadFromHistory(new[] {new TestAggregateDidSomething { AggregateId = aggregateId, Version = 1}});
             return Task.FromResult(obj);
         }
     }

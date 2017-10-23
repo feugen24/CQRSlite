@@ -21,11 +21,11 @@ namespace CQRSCode.WriteModel
         {
             foreach (var @event in events)
             {
-                _inMemoryDb.TryGetValue(@event.Id, out var list);
+                _inMemoryDb.TryGetValue(@event.AggregateId, out var list);
                 if (list == null)
                 {
                     list = new List<IEvent>();
-                    _inMemoryDb.Add(@event.Id, list);
+                    _inMemoryDb.Add(@event.AggregateId, list);
                 }
                 list.Add(@event);
                 await _publisher.Publish(@event, cancellationToken);

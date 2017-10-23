@@ -29,9 +29,9 @@ namespace CQRSlite.Tests.Substitutes
 
             return Task.FromResult(new List<IEvent>
             {
-                new TestAggregateDidSomething {Id = aggregateId, Version = 1},
-                new TestAggregateDidSomethingElse {Id = aggregateId, Version = 2},
-                new TestAggregateDidSomething {Id = aggregateId, Version = 3},
+                new TestAggregateDidSomething {AggregateId = aggregateId, Version = 1},
+                new TestAggregateDidSomethingElse {AggregateId = aggregateId, Version = 2},
+                new TestAggregateDidSomething {AggregateId = aggregateId, Version = 3},
             }.Where(x => x.Version > version));
         }
 

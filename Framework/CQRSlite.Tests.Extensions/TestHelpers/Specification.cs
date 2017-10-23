@@ -128,7 +128,7 @@ namespace CQRSlite.Tests.Extensions.TestHelpers
 
         public Task<IEnumerable<IEvent>> Get(Guid aggregateId, int fromVersion, CancellationToken cancellationToken = default(CancellationToken))
         {
-            var events = Events.Where(x => x.Id == aggregateId && x.Version > fromVersion);
+            var events = Events.Where(x => x.AggregateId == aggregateId && x.Version > fromVersion);
             return Task.FromResult(events);
         }
     }

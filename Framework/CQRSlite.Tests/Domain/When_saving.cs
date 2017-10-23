@@ -83,7 +83,7 @@ namespace CQRSlite.Tests.Domain
             agg.DoSomething();
             await _session.Add(agg);
             await _session.Commit();
-            Assert.Equal(id, _eventStore.Events.First().Id);
+            Assert.Equal(id, _eventStore.Events.First().AggregateId);
         }
 
         [Fact]

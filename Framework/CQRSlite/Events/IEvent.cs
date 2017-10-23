@@ -8,7 +8,7 @@ namespace CQRSlite.Events
     /// </summary>
     public interface IEvent : IMessage
     {
-        Guid Id { get; set; }
+        Guid AggregateId { get; set; }
         int Version { get; set; }
         DateTimeOffset TimeStamp { get; set; }
     }

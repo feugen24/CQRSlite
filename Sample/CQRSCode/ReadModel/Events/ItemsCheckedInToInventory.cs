@@ -7,13 +7,13 @@ namespace CQRSCode.ReadModel.Events
     {
         public readonly int Count;
  
-        public ItemsCheckedInToInventory(Guid id, int count) 
+        public ItemsCheckedInToInventory(Guid aggregateId, int count) 
         {
-            Id = id;
+            AggregateId = aggregateId;
             Count = count;
         }
 
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
         public int Version { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
     }

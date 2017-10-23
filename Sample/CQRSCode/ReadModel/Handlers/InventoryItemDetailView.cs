@@ -16,14 +16,14 @@ namespace CQRSCode.ReadModel.Handlers
     {
         public Task Handle(InventoryItemCreated message, CancellationToken token)
         {
-            InMemoryDatabase.Details.Add(message.Id,
-                new InventoryItemDetailsDto(message.Id, message.Name, 0, message.Version));
+            InMemoryDatabase.Details.Add(message.AggregateId,
+                new InventoryItemDetailsDto(message.AggregateId, message.Name, 0, message.Version));
             return Task.CompletedTask;
         }
 
         public Task Handle(InventoryItemRenamed message, CancellationToken token)
         {
-            var d = GetDetailsItem(message.Id);
+            var d = GetDetailsItem(message.AggregateId);
             d.Name = message.NewName;
             d.Version = message.Version;
             return Task.CompletedTask;
@@ -40,7 +40,7 @@ namespace CQRSCode.ReadModel.Handlers
 
         public Task Handle(ItemsRemovedFromInventory message, CancellationToken token)
         {
-            var dto = GetDetailsItem(message.Id);
+            var dto = GetDetailsItem(message.AggregateId);
             dto.CurrentCount -= message.Count;
             dto.Version = message.Version;
             return Task.CompletedTask;
@@ -48,7 +48,7 @@ namespace CQRSCode.ReadModel.Handlers
 
         public Task Handle(ItemsCheckedInToInventory message, CancellationToken token)
         {
-            var dto = GetDetailsItem(message.Id);
+            var dto = GetDetailsItem(message.AggregateId);
             dto.CurrentCount += message.Count;
             dto.Version = message.Version;
             return Task.CompletedTask;
@@ -56,7 +56,7 @@ namespace CQRSCode.ReadModel.Handlers
 
         public Task Handle(InventoryItemDeactivated message, CancellationToken token)
         {
-            InMemoryDatabase.Details.Remove(message.Id);
+            InMemoryDatabase.Details.Remove(message.AggregateId);
             return Task.CompletedTask;
         }
     }

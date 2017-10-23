@@ -8,7 +8,7 @@ namespace CQRSlite.Tests.Substitutes
 {
     public class TestAggregateDidSomething : IEvent
     {
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
         public int Version { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
         public bool LongRunning { get; set; }
@@ -16,7 +16,7 @@ namespace CQRSlite.Tests.Substitutes
 
     internal class TestAggregateDidSomethingInternal : IEvent
     {
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
         public int Version { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
         public bool LongRunning { get; set; }
@@ -24,7 +24,7 @@ namespace CQRSlite.Tests.Substitutes
 
     public class TestAggregateDidSomethingElse : IEvent
     {
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
         public int Version { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
     }
@@ -39,7 +39,7 @@ namespace CQRSlite.Tests.Substitutes
             lock (message)
             {
                 if (message.Version == -10)
-                    throw new ConcurrencyException(message.Id);
+                    throw new ConcurrencyException(message.AggregateId);
                 TimesRun++;
                 Token = token;
             }

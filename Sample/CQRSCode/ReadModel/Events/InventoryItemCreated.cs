@@ -8,11 +8,11 @@ namespace CQRSCode.ReadModel.Events
         public readonly string Name;
         public InventoryItemCreated(Guid id, string name) 
         {
-            Id = id;
+            AggregateId = id;
             Name = name;
         }
 
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
         public int Version { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
 	}

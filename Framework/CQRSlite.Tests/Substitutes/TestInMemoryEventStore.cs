@@ -28,7 +28,7 @@ namespace CQRSlite.Tests.Substitutes
             lock(Events)
             {
                 return Task.FromResult((IEnumerable<IEvent>)Events
-                    .Where(x => x.Version > fromVersion && x.Id == aggregateId)
+                    .Where(x => x.Version > fromVersion && x.AggregateId == aggregateId)
                     .OrderBy(x => x.Version)
                     .ToList());
             }

@@ -7,13 +7,13 @@ namespace CQRSCode.ReadModel.Events
     {
         public readonly string NewName;
  
-        public InventoryItemRenamed(Guid id, string newName)
+        public InventoryItemRenamed(Guid aggregateId, string newName)
         {
-            Id = id;
+            AggregateId = aggregateId;
             NewName = newName;
         }
 
-        public Guid Id { get; set; }
+        public Guid AggregateId { get; set; }
         public int Version { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
     }
