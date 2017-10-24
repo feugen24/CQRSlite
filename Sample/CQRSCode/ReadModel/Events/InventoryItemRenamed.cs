@@ -3,18 +3,20 @@ using CQRSlite.Events;
 
 namespace CQRSCode.ReadModel.Events
 {
-    public class InventoryItemRenamed : IEvent
+    public class InventoryItemRenamed : EventBase
     {
         public readonly string NewName;
  
-        public InventoryItemRenamed(Guid aggregateId, string newName)
+        public InventoryItemRenamed(Guid aggregateId, string newName):base(aggregateId)
         {
             AggregateId = aggregateId;
             NewName = newName;
         }
 
-        public Guid AggregateId { get; set; }
-        public int Version { get; set; }
-        public DateTimeOffset TimeStamp { get; set; }
+//        public Guid AggregateId { get; set; }
+//        public int Version { get; set; }
+//        public DateTimeOffset TimeStamp { get; set; }
+//        public string IssuedBy { get; set; }
+//        public string CorrelationId { get; set; }
     }
 }

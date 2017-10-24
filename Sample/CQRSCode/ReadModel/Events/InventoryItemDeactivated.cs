@@ -13,5 +13,8 @@ namespace CQRSCode.ReadModel.Events
         public Guid AggregateId { get; set; }
         public int Version { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
-	}
+
+	    public string IssuedBy { get; set; }
+	    public string CorrelationId { get; set; }
+    }
 }

@@ -3,17 +3,13 @@ using CQRSlite.Events;
 
 namespace CQRSCode.ReadModel.Events
 {
-    public class InventoryItemCreated : IEvent 
+    public class InventoryItemCreated : EventBase 
 	{
         public readonly string Name;
-        public InventoryItemCreated(Guid id, string name) 
+        public InventoryItemCreated(Guid id, string name) :base(id)
         {
             AggregateId = id;
             Name = name;
         }
-
-        public Guid AggregateId { get; set; }
-        public int Version { get; set; }
-        public DateTimeOffset TimeStamp { get; set; }
 	}
 }
