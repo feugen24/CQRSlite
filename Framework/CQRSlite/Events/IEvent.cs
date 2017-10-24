@@ -11,5 +11,8 @@ namespace CQRSlite.Events
         Guid AggregateId { get; set; }
         int Version { get; set; }
         DateTimeOffset TimeStamp { get; set; }
+
+        string IssuedBy { get; set; }
+        string CorrelationId { get; set; }
     }
 }
