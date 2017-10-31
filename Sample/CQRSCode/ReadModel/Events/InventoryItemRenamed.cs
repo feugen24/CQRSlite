@@ -1,4 +1,5 @@
 ﻿using System;
+using CQRSCode.WriteModel.Domain;
 using CQRSlite.Events;
 
 namespace CQRSCode.ReadModel.Events
@@ -7,7 +8,7 @@ namespace CQRSCode.ReadModel.Events
     {
         public readonly string NewName;
  
-        public InventoryItemRenamed(Guid aggregateId, string newName):base(aggregateId)
+        public InventoryItemRenamed(Guid aggregateId, string newName):base(aggregateId, typeof(InventoryItem))
         {
             AggregateId = aggregateId;
             NewName = newName;

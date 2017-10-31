@@ -5,7 +5,7 @@ namespace CQRSlite.Tests.Substitutes
 {
     public class TestAggregateCreated : EventBase
     {
-        public TestAggregateCreated() : base(Guid.Empty)
+        public TestAggregateCreated() : base(Guid.Empty, typeof(Object))
         {
         }
     }

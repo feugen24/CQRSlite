@@ -10,32 +10,44 @@ namespace CQRSlite.Tests.Substitutes
     {
         public Guid AggregateId { get; set; }
         public int Version { get; set; }
+        public string Type { get; set; }
+        public Type AggregateType { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
+        public string HumanReadableId { get; set; }
         public bool LongRunning { get; set; }
 
         public string IssuedBy { get; set; }
         public string CorrelationId { get; set; }
+        public string Data { get; set; }
     }
 
     internal class TestAggregateDidSomethingInternal : IEvent
     {
         public Guid AggregateId { get; set; }
         public int Version { get; set; }
+        public string Type { get; set; }
+        public Type AggregateType { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
+        public string HumanReadableId { get; set; }
         public bool LongRunning { get; set; }
 
         public string IssuedBy { get; set; }
         public string CorrelationId { get; set; }
+        public string Data { get; set; }
     }
 
     public class TestAggregateDidSomethingElse : IEvent
     {
         public Guid AggregateId { get; set; }
         public int Version { get; set; }
+        public string Type { get; set; }
+        public Type AggregateType { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
+        public string HumanReadableId { get; set; }
 
         public string IssuedBy { get; set; }
         public string CorrelationId { get; set; }
+        public string Data { get; set; }
     }
 
     public class TestAggregateDidSomethingHandler : ICancellableEventHandler<TestAggregateDidSomething>,

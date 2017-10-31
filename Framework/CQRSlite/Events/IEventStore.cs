@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using CQRSlite.Domain;
 
 namespace CQRSlite.Events
 {
@@ -16,7 +17,7 @@ namespace CQRSlite.Events
         /// <param name="events">Events to be saved</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>Task of save operation</returns>
-        Task Save(IEnumerable<IEvent> events, CancellationToken cancellationToken = default(CancellationToken));
+        Task Save<T>(IEnumerable<IEvent> events, CancellationToken cancellationToken = default(CancellationToken)) where T : AggregateRoot;
 
         /// <summary>
         /// Gets events for an aggregate

@@ -46,7 +46,7 @@ namespace CQRSlite.Domain
             }
 
             var changes = aggregate.FlushUncommitedChanges();
-            await _eventStore.Save(changes, cancellationToken);
+            await _eventStore.Save<T>(changes, cancellationToken);
 
             if (_publisher != null)
             {

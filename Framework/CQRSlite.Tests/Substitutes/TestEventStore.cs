@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using CQRSlite.Domain;
 using CQRSlite.Events;
 
 namespace CQRSlite.Tests.Substitutes
@@ -35,7 +36,7 @@ namespace CQRSlite.Tests.Substitutes
             }.Where(x => x.Version > version));
         }
 
-        public Task Save(IEnumerable<IEvent> events, CancellationToken cancellationToken = default(CancellationToken))
+        public Task Save<T>(IEnumerable<IEvent> events, CancellationToken cancellationToken = default(CancellationToken)) where T: AggregateRoot
         {
             Token = cancellationToken;
             SavedEvents.AddRange(events);
