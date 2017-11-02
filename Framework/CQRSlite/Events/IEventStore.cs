@@ -27,5 +27,7 @@ namespace CQRSlite.Events
         /// <param name="cancellationToken">Optional cancellation token</param>
         /// <returns>Task with events for aggregate</returns>
         Task<IEnumerable<IEvent>> Get(Guid aggregateId, int fromVersion, CancellationToken cancellationToken = default(CancellationToken));
+
+        
     }
 }

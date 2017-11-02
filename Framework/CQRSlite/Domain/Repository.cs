@@ -25,18 +25,18 @@ namespace CQRSlite.Domain
             _eventStore = eventStore ?? throw new ArgumentNullException(nameof(eventStore));
         }
 
-        /// <summary>
-        /// Initialize Repository with publisher that sends all saved events to handlers.
-        /// This should be done from EventStore to better handle transaction boundaries
-        /// </summary>
-        /// <param name="eventStore"></param>
-        /// <param name="publisher"></param>
-        [Obsolete("The eventstore should publish events after saving")]
-        public Repository(IEventStore eventStore, IEventPublisher publisher)
-        {
-            _eventStore = eventStore ?? throw new ArgumentNullException(nameof(eventStore));
-            _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
-        }
+//        /// <summary>
+//        /// Initialize Repository with publisher that sends all saved events to handlers.
+//        /// This should be done from EventStore to better handle transaction boundaries
+//        /// </summary>
+//        /// <param name="eventStore"></param>
+//        /// <param name="publisher"></param>
+//        [Obsolete("The eventstore should publish events after saving")]
+//        public Repository(IEventStore eventStore, IEventPublisher publisher)
+//        {
+//            _eventStore = eventStore ?? throw new ArgumentNullException(nameof(eventStore));
+//            _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
+//        }
 
         public async Task Save<T>(T aggregate, int? expectedVersion = null, CancellationToken cancellationToken = default(CancellationToken)) where T : AggregateRoot
         {

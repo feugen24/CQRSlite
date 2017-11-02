@@ -20,7 +20,7 @@ namespace CQRSlite.Tests.Domain
             _eventStore = new TestInMemoryEventStore();
             _eventPublisher = new TestEventPublisher();
 #pragma warning disable 618
-            _rep = new Repository(_eventStore, _eventPublisher);
+            _rep = new Repository(_eventStore);
 #pragma warning restore 618
             _session = new Session(_rep);
 
