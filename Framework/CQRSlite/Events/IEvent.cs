@@ -12,6 +12,7 @@ namespace CQRSlite.Events
         int Version { get; set; }
         string Type { get; set; }
         Type AggregateType { get; set; }
+        string AggregateTypeName { get; set; }
         DateTimeOffset TimeStamp { get; set; }
 
         string HumanReadableId { get; set; }

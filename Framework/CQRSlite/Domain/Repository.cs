@@ -65,7 +65,7 @@ namespace CQRSlite.Domain
         private async Task<T> LoadAggregate<T>(Guid id, CancellationToken cancellationToken = default(CancellationToken)) where T : AggregateRoot
         {
             var events = await _eventStore.Get(id, -1, cancellationToken);
-            if (!events.Any())
+            if (!events.Any(e => e.AggregateTypeName == typeof(T).Name))
             {
                 throw new AggregateNotFoundException(typeof(T), id);
             }

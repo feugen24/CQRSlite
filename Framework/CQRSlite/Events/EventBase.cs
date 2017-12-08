@@ -11,6 +11,7 @@ namespace CQRSlite.Events
         public int Version { get; set; }
         public string Type { get; set; }
         public Type AggregateType { get; set; }
+        public string AggregateTypeName { get; set; }
         public DateTimeOffset TimeStamp { get; set; }
         public string Data { get; set; }
 
@@ -21,6 +22,7 @@ namespace CQRSlite.Events
         {
             AggregateId = aggregateId;
             AggregateType = aggregateType;
+            AggregateTypeName = aggregateType.Name;
         }
     }
 }
