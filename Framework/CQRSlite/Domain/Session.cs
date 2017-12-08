@@ -55,6 +55,9 @@ namespace CQRSlite.Domain
             {
                 throw new ConcurrencyException(id);
             }
+
+            if (aggregate == null) return null;
+
             await Add(aggregate, cancellationToken);
 
             return aggregate;

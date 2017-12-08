@@ -67,7 +67,7 @@ namespace CQRSlite.Domain
             var events = await _eventStore.Get(id, -1, cancellationToken);
             if (!events.Any(e => e.AggregateTypeName == typeof(T).Name))
             {
-                throw new AggregateNotFoundException(typeof(T), id);
+                return null;//throw new AggregateNotFoundException(typeof(T), id);
             }
 
             var aggregate = AggregateFactory.CreateAggregate<T>();
