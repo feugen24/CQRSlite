@@ -26,7 +26,7 @@ namespace CQRSlite.Events
         /// <param name="fromVersion">All events after this should be returned. -1 if from start</param>
         /// <param name="cancellationToken">Optional cancellation token</param>
         /// <returns>Task with events for aggregate</returns>
-        Task<IEnumerable<IEvent>> Get(Guid aggregateId, int fromVersion, CancellationToken cancellationToken = default(CancellationToken));
+        Task<IEnumerable<IEvent>> Get(Guid aggregateId, int fromVersion = -1, CancellationToken cancellationToken = default(CancellationToken));
 
         
     }
