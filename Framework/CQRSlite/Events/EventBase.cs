@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace CQRSlite.Events
@@ -23,6 +24,10 @@ namespace CQRSlite.Events
             AggregateId = aggregateId;
             AggregateType = aggregateType;
             AggregateTypeName = aggregateType.Name;
+            if (typeof(IEvent).IsAssignableFrom(aggregateType))
+            {
+                throw new ArgumentException("aggregateType can't be an event");
+            }
         }
     }
 }
