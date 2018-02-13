@@ -6,7 +6,7 @@ namespace CQRSlite.Domain
 {
     public interface IClonableEvent
     {
-        Guid SourceTrackingSheetId { get; set; }
+        Guid SourceAggregateId { get; set; }
 
         Guid AggregateId { get; set; }
     }

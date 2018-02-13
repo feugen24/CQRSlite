@@ -17,7 +17,12 @@ namespace CQRSlite.Tests.Substitutes
 
         public string IssuedBy { get; set; }
         public string CorrelationId { get; set; }
+        public bool IsCloned { get; }
         public string Data { get; set; }
+        public void SetAsClonedEvent(Guid aggregateId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     internal class TestAggregateDidSomethingInternal : IEvent
@@ -33,7 +38,12 @@ namespace CQRSlite.Tests.Substitutes
 
         public string IssuedBy { get; set; }
         public string CorrelationId { get; set; }
+        public bool IsCloned { get; }
         public string Data { get; set; }
+        public void SetAsClonedEvent(Guid aggregateId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class TestAggregateDidSomethingElse : IEvent
@@ -48,7 +58,12 @@ namespace CQRSlite.Tests.Substitutes
 
         public string IssuedBy { get; set; }
         public string CorrelationId { get; set; }
+        public bool IsCloned { get; }
         public string Data { get; set; }
+        public void SetAsClonedEvent(Guid aggregateId)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class TestAggregateDidSomethingHandler : ICancellableEventHandler<TestAggregateDidSomething>,

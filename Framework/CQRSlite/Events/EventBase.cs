@@ -19,6 +19,8 @@ namespace CQRSlite.Events
         public string IssuedBy { get; set; }
         public string CorrelationId { get; set; }
 
+        public bool IsCloned { get; private set; }
+
         protected EventBase(Guid aggregateId, Type aggregateType)
         {
             AggregateId = aggregateId;
@@ -29,5 +31,11 @@ namespace CQRSlite.Events
                 throw new ArgumentException("aggregateType can't be an event");
             }
         }
-    }
+
+        public void SetAsClonedEvent(Guid aggregateId)
+        {
+            AggregateId = aggregateId;
+            IsCloned = true;
+        }
+}
 }

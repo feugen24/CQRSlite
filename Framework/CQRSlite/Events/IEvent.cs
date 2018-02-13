@@ -19,6 +19,9 @@ namespace CQRSlite.Events
 
         string IssuedBy { get; set; }
         string CorrelationId { get; set; }
+        bool IsCloned { get; }
         string Data { get; set; }
+
+        void SetAsClonedEvent(Guid aggregateId);
     }
 }

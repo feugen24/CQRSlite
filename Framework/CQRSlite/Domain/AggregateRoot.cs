@@ -71,7 +71,8 @@ namespace CQRSlite.Domain
                     }
                     ApplyEvent(e);
                     Id = e.AggregateId;
-                    Version++;
+
+                    if(!e.IsCloned) Version++; //we don't count events of clone source
                 }
             }
         }
