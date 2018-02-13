@@ -2,6 +2,7 @@ using CQRSlite.Domain.Exception;
 using CQRSlite.Domain.Factories;
 using CQRSlite.Events;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -70,9 +71,28 @@ namespace CQRSlite.Domain
                 return null;//throw new AggregateNotFoundException(typeof(T), id);
             }
 
+            events = await CheckAndProcessClone<T>(events, cancellationToken);
+
             var aggregate = AggregateFactory.CreateAggregate<T>();
             aggregate.LoadFromHistory(events);
             return aggregate;
+        }
+
+        private async Task<IEnumerable<IEvent>> CheckAndProcessClone<T>(IEnumerable<IEvent> events, CancellationToken cancellationToken = default(CancellationToken))
+            where T : AggregateRoot
+        {
+            if (events.First() is IClonableEvent firstEvent)
+            {
+                var cloneSourceEvents = (await _eventStore.Get(firstEvent.SourceTrackingSheetId, -1, cancellationToken)).ToList();
+                foreach (var cloneSourceEvent in cloneSourceEvents)
+                {
+                    cloneSourceEvent.AggregateId = firstEvent.AggregateId;
+                }
+                cloneSourceEvents.ToList().AddRange(events);
+                return cloneSourceEvents;
+            }
+
+            return events;
         }
     }
 }
