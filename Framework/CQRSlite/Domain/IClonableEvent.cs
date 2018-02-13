@@ -9,5 +9,7 @@ namespace CQRSlite.Domain
         Guid SourceAggregateId { get; set; }
 
         Guid AggregateId { get; set; }
+
+        DateTimeOffset TimeStamp { get; set; }
     }
 }

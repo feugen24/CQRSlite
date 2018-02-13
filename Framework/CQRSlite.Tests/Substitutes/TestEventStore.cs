@@ -20,7 +20,7 @@ namespace CQRSlite.Tests.Substitutes
             SavedEvents = new List<IEvent>();
         }
 
-        public Task<IEnumerable<IEvent>> Get(Guid aggregateId, int version, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<IEvent>> Get(Guid aggregateId, int version, DateTimeOffset? toDate = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             Token = cancellationToken;
             if (aggregateId == _emptyGuid || aggregateId == Guid.Empty)

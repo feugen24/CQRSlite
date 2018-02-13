@@ -23,7 +23,7 @@ namespace CQRSlite.Tests.Substitutes
             return Task.CompletedTask;
         }
 
-        public Task<IEnumerable<IEvent>> Get(Guid aggregateId, int fromVersion, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<IEnumerable<IEvent>> Get(Guid aggregateId, int fromVersion, DateTimeOffset? toDate = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             Token = cancellationToken;
             lock(Events)
