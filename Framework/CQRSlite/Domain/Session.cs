@@ -70,7 +70,12 @@ namespace CQRSlite.Domain
 
         public async Task Commit(CancellationToken cancellationToken = default(CancellationToken))
         {
-            await Task.WhenAll(_trackedAggregates.Values.Select(x => _repository.Save(x.Aggregate, x.Version, cancellationToken)));
+            foreach (var trackedAggregate in _trackedAggregates)
+            {
+                await _repository.Save(trackedAggregate.Value.Aggregate, trackedAggregate.Value.Version,
+                    cancellationToken);
+            }
+            //await Task.WhenAll(_trackedAggregates.Values.Select(x => _repository.Save(x.Aggregate, x.Version, cancellationToken)));
             _trackedAggregates.Clear();
         }
 

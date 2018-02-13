@@ -68,6 +68,7 @@ namespace CQRSlite.Domain
         private async Task<IEnumerable<IEvent>> CheckAndProcessClone<T>(IEnumerable<IEvent> events, CancellationToken cancellationToken = default(CancellationToken))
             where T : AggregateRoot
         {
+            events = events.ToList();
             if (events.First() is IClonableEvent firstEvent)
             {
                 var cloneSourceEvents = (await _eventStore.Get(firstEvent.SourceAggregateId, -1, cancellationToken)).ToList();
@@ -77,8 +78,8 @@ namespace CQRSlite.Domain
                 {
                     cloneSourceEvent.SetAsClonedEvent(firstEvent.AggregateId);
                 }
-                cloneSourceEvents.ToList().AddRange(events);
-                return cloneSourceEvents;
+                
+                return cloneSourceEvents.Concat(events);
             }
 
             return events;

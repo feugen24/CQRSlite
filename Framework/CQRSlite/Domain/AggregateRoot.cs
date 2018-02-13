@@ -65,7 +65,7 @@ namespace CQRSlite.Domain
             {
                 foreach (var e in history.ToArray())
                 {
-                    if (e.Version != Version + 1)
+                    if (!e.IsCloned && e.Version != Version + 1)
                     {
                         throw new EventsOutOfOrderException(e.AggregateId);
                     }
