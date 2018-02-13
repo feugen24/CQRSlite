@@ -28,7 +28,7 @@ namespace CQRSlite.Domain
 
         public async Task Save<T>(T aggregate, int? expectedVersion = null, CancellationToken cancellationToken = default(CancellationToken)) where T : AggregateRoot
         {
-            if (expectedVersion != null && (await _eventStore.Get(aggregate.Id, expectedVersion.Value, cancellationToken)).Any())
+            if (expectedVersion != null && (await _eventStore.Get(aggregate.Id, expectedVersion.Value, null, cancellationToken)).Any())
             {
                 throw new ConcurrencyException(aggregate.Id);
             }
@@ -52,7 +52,7 @@ namespace CQRSlite.Domain
 
         private async Task<T> LoadAggregate<T>(Guid id, CancellationToken cancellationToken = default(CancellationToken)) where T : AggregateRoot
         {
-            var events = await _eventStore.Get(id, -1, cancellationToken);
+            var events = await _eventStore.Get(id, -1, null, cancellationToken);
             if (!events.Any(e => e.AggregateTypeName == typeof(T).Name))
             {
                 return null;//throw new AggregateNotFoundException(typeof(T), id);
@@ -71,7 +71,7 @@ namespace CQRSlite.Domain
             events = events.ToList();
             if (events.First() is IClonableEvent firstEvent)
             {
-                var cloneSourceEvents = (await _eventStore.Get(firstEvent.SourceAggregateId, -1, cancellationToken)).ToList();
+                var cloneSourceEvents = (await _eventStore.Get(firstEvent.SourceAggregateId, -1, firstEvent.TimeStamp, cancellationToken)).ToList();
                 cloneSourceEvents = (await CheckAndProcessClone<T>(cloneSourceEvents, cancellationToken)).ToList();
 
                 foreach (var cloneSourceEvent in cloneSourceEvents)

@@ -46,7 +46,7 @@ namespace CQRSlite.Snapshotting
             if (snapshotVersion == -1)
                 return await _repository.Get<T>(aggregateId, cancellationToken);
 
-            var events = (await _eventStore.Get(aggregateId, snapshotVersion, cancellationToken)).Where(desc => desc.Version > snapshotVersion);
+            var events = (await _eventStore.Get(aggregateId, snapshotVersion, null, cancellationToken)).Where(desc => desc.Version > snapshotVersion);
             aggregate.LoadFromHistory(events);
 
             return aggregate;
